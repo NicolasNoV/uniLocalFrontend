@@ -1,0 +1,42 @@
+.card {
+    border: 1px solid #ddd;
+  }
+  
+  .card-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #6c757d;
+  }
+  
+  .card-subtitle {
+    font-size: 1.25rem;
+    color: #333;
+  }
+  
+  .card-text {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  .card img {
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .btn-link {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .btn-warning {
+    font-size: 1.25rem;
+  }
+  
+  .badge {
+    font-size: 1rem;
+  }
+  
+  .fas.fa-heart {
+    font-size: 1.5rem;
+  }
+  

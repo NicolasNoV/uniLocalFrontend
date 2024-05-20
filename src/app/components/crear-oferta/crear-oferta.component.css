@@ -1,0 +1,11 @@
+.card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  .d-flex .form-label {
+    margin-bottom: 0.5rem;
+  }

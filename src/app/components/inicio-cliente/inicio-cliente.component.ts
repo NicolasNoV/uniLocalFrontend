@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-inicio-cliente',
-  standalone: true,
-  imports: [],
+  selector: 'app-usuario',
   templateUrl: './inicio-cliente.component.html',
-  styleUrl: './inicio-cliente.component.css'
+  styleUrls: ['./inicio-cliente.component.css']
 })
 export class InicioClienteComponent {
-
+  recomendaciones = [
+    { nombre: 'La Cabrera', imagen: 'assets/lacabrera.jpg' },
+    { nombre: 'Pioneiro Restaurante', imagen: 'assets/pioneiro.jpg' },
+    { nombre: 'El Taller', imagen: 'assets/eltaller.jpg' },
+    { nombre: 'Canelas', imagen: 'assets/canelas.jpg' },
+    { nombre: 'Lugares Favoritos', imagen: 'assets/lugaresfavoritos.jpg' },
+    { nombre: 'Superama', imagen: 'assets/superama.jpg' }
+  ];
 }
