@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
+  standalone: true,
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './inicio-cliente.component.html',
   styleUrls: ['./inicio-cliente.component.css']
 })

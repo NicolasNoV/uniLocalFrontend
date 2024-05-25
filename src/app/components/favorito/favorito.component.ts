@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-favoritos',
+  standalone: true,
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './favorito.component.html',
   styleUrls: ['./favorito.component.css']
 })

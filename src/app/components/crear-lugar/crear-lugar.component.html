@@ -2,18 +2,18 @@
   <div class="card mt-4">
     <div class="card-body">
       <h5 class="card-title">Crear Lugar</h5>
-      <form>
+      <form formGroup="lugarForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
           <label for="placeName" class="form-label">Nombre del lugar</label>
-          <input type="text" class="form-control" id="placeName" placeholder="Nombre del lugar">
+          <input type="text" class="form-control" id="placeName" formControlName="nombre" placeholder="Nombre del lugar">
         </div>
         <div class="mb-3">
           <label for="placeDescription" class="form-label">Descripción</label>
-          <textarea class="form-control" id="placeDescription" rows="3" placeholder="Ingresa la descripción"></textarea>
+          <textarea class="form-control" id="placeDescription" formControlName="descripcion" rows="3" placeholder="Ingresa la descripción"></textarea>
         </div>
         <div class="mb-3">
           <label for="placePhone" class="form-label">Teléfono</label>
-          <input type="tel" class="form-control" id="placePhone" placeholder="Número de teléfono">
+          <input type="tel" class="form-control" id="placePhone" formControlName="telefono" placeholder="Número de teléfono">
         </div>
         <div class="mb-3">
           <label for="placeLocation" class="form-label">Ubicación</label>
@@ -26,22 +26,22 @@
           <div class="d-flex">
             <div class="me-3">
               <label for="startTime" class="form-label">Inicio</label>
-              <input type="time" class="form-control" id="startTime">
+              <input type="time" class="form-control" id="startTime" formControlName="horaInicio">
             </div>
             <div class="me-3">
               <label for="endTime" class="form-label">Fin</label>
-              <input type="time" class="form-control" id="endTime">
+              <input type="time" class="form-control" id="endTime" formControlName="horaFin">
             </div>
             <div>
               <label for="day" class="form-label">Día</label>
-              <input type="date" class="form-control" id="day">
+              <input type="date" class="form-control" id="day" formControlName="dia">
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-primary mt-3">Añadir Horario</button>
+        <button type="button" class="btn btn-primary mt-3" (click)="anadirHorario()">Añadir Horario</button>
         <div class="mb-3 mt-3">
           <label for="placeType" class="form-label">Tipo Negocio</label>
-          <input type="text" class="form-control" id="placeType" placeholder="Tipo de negocio">
+          <input type="text" class="form-control" id="placeType" formControlName="tipoNegocio" placeholder="Tipo de negocio">
         </div>
         <div class="mb-3">
           <label for="placeImage" class="form-label">Imagen</label>
@@ -50,7 +50,7 @@
               <img src="https://via.placeholder.com/100" alt="Imagen" class="img-thumbnail">
             </div>
             <div>
-              <input type="file" class="form-control-file" id="placeImage">
+              <input type="file" class="form-control-file" id="placeImage" (change)="onFileChange($event)">
             </div>
           </div>
         </div>

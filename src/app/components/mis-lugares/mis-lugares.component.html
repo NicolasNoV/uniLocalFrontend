@@ -1,1 +1,20 @@
-<p>mis-lugares works!</p>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Mis Lugares</h1>
+    <a routerLink="../crear-lugar" class="btn btn-primary">
+      <i class="fas fa-plus"></i> Nuevo Lugar
+    </a>
+  </div>
+  <div class="row">
+    <div class="col-md-4" ngFor="let lugar of lugares">
+      <div ngClass="{'card': true, 'mb-4': true, 'border-success': lugar.estado === 'Aprobado', 'border-danger': lugar.estado === 'Rechazado'}">
+        <img [src]="negocio.imagenes" class="card-img-top" [alt]="negocio.nombre">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ negocio.nombre }}</h5>
+          <p class="card-text">{{ negocio.descripcion }}</p>
+          <a routerLink="../detalle-lugar" class="btn btn-primary">Detalles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,7 @@ export class MapaService {
   marcadores: any[];
 
   constructor() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoidW5pbG9jYWwiLCJhIjoiY2x2cGVuYmZyMDFhdTJscWlobnNhemFuaSJ9.u3OdzIzyKbq0WNUsaD1fgw';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoibmljb2xhc25vdiIsImEiOiJjbHdsZXVreGswZ2FsMmtwaDR0OXRzMGYzIn0.MO4i4V_T5JOOT-M5Vi-lQA';
     this.marcadores = [];
   }
 

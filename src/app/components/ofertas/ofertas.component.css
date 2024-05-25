@@ -1,0 +1,14 @@
+.card-header {
+    background-color: #007bff;
+    color: white;
+  }
+  .offer img {
+    border-radius: 10px;
+  }
+  .badge {
+    font-size: 0.9rem;
+  }
+  .fa-heart {
+    cursor: pointer;
+  }
+  

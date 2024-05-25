@@ -1,1 +1,30 @@
-<p>lugares-aceptados works!</p>
+<div class="container mt-4">
+    <div class="text-center mb-4">
+      <h2 class="text-muted">Moderador</h2>
+      <h1 class="fw-bold">Lugares Aprobados</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-4" *ngFor="let lugar of lugares">
+        <div class="card h-100">
+          <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <span>Aprobado el {{ lugar.fecha }}</span>
+            <i class="fas fa-check"></i>
+          </div>
+          <img [src]="lugar.imagen" class="card-img-top" alt="{{ lugar.nombre }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ lugar.nombre }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ lugar.tipo }}</h6>
+            <p class="card-text">{{ lugar.descripcion }}</p>
+            <div class="d-flex align-items-center">
+              <img src="assets/user.jpg" class="rounded-circle me-2" alt="{{ lugar.usuario }}" width="30" height="30">
+              <span>{{ lugar.usuario }}</span>
+            </div>
+          </div>
+          <div class="card-footer text-end">
+            <button class="btn btn-primary">Ver detalles</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { EnviarMensajeChatDTO } from '../../dto/enviar-mensaje-chat-dto';
+import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-lugar',
+  standalone: true,
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './detalle-lugar.component.html',
   styleUrls: ['./detalle-lugar.component.css']
 })

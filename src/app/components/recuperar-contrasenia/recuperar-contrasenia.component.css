@@ -1,0 +1,29 @@
+.container {
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .input-group-text {
+    background: none;
+    border: none;
+  }
+  
+  .btn-outline-secondary {
+    border: none;
+  }
+  
+  .btn-outline-secondary:hover {
+    background: #e9ecef;
+  }
+  
