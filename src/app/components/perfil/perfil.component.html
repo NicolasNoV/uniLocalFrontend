@@ -1,0 +1,35 @@
+<app-inicio-cliente></app-inicio-cliente>
+
+<div class="perfil-container">
+    <h2>Editar Perfil</h2>
+    
+    <form [formGroup]="perfilForm" (ngSubmit)="editarPerfil()">
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" formControlName="nombre" placeholder="Ingrese su nombre" />
+      <div *ngIf="perfilForm.get('nombre')?.invalid && perfilForm.get('nombre')?.touched" class="error">
+        El nombre es obligatorio y debe tener menos de 100 caracteres.
+      </div>
+  
+      <label for="correoElectronico">Correo Electrónico:</label>
+      <input id="correoElectronico" formControlName="correoElectronico" placeholder="Ingrese su correo" />
+      <div *ngIf="perfilForm.get('correoElectronico')?.invalid && perfilForm.get('correoElectronico')?.touched" class="error">
+        Ingresa un correo válido y que tenga menos de 100 caracteres.
+      </div>
+  
+      <label for="ciudad">Ciudad:</label>
+      <input id="ciudad" formControlName="ciudad" placeholder="Ingrese su ciudad" />
+      <div *ngIf="perfilForm.get('ciudad')?.invalid && perfilForm.get('ciudad')?.touched" class="error">
+        La ciudad es obligatoria y debe tener menos de 50 caracteres.
+      </div>
+  
+      <label for="fotoPerfil">Foto de Perfil (URL):</label>
+      <input id="fotoPerfil" formControlName="fotoPerfil" placeholder="URL de la foto de perfil" />
+  
+      <button type="submit">Guardar Cambios</button>
+      <button type="button" class="btn-eliminar" (click)="eliminarPerfil()">Eliminar Perfil</button>
+    </form>
+  
+    <p *ngIf="mensaje" class="success">{{ mensaje }}</p>
+    <p *ngIf="error" class="error">{{ error }}</p>
+  </div>
+  

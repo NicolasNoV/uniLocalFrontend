@@ -1,48 +1,52 @@
-<div class="container">
-    <div class="card">
-      <div class="card-header bg-primary text-white">
-        <i class="fas fa-comments"></i> Chat de Pioneiro Restaurante
-      </div>
-      <div class="card-body">
-        <div class="d-flex flex-column">
-          <div class="mb-2">
-            <div class="text-start">
-              <div class="bg-primary text-white p-2 rounded">
-                <strong>A</strong>
-                <p>Hola quisiera saber más detalles sobre el producto, es que la comida me parece interesante pedir a domicilio para otra ciudad, se puede?</p>
-              </div>
-            </div>
-          </div>
-          <div class="mb-2">
-            <div class="text-start">
-              <div class="bg-secondary text-white p-2 rounded">
-                <p>Hola?</p>
-                <small class="text-muted">Hace 2 minutos</small>
-              </div>
-            </div>
-          </div>
-          <div class="mb-2">
-            <div class="text-end">
-              <div class="bg-light p-2 rounded border">
-                <p>Hola! Claro que sí, cuéntame</p>
-              </div>
-            </div>
-          </div>
-          <div class="mb-2">
-            <div class="text-end">
-              <div class="bg-light p-2 rounded border">
-                <p>Encantado</p>
-                <i class="fas fa-smile"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Input text">
-          <button class="btn btn-primary" type="button"><i class="fas fa-paper-plane"></i></button>
-        </div>
-      </div>
+<app-inicio-cliente></app-inicio-cliente>
+
+<div class="chat-container">
+  <h2>Crear Chat</h2>
+  <form [formGroup]="crearChatForm" (ngSubmit)="crearChat()">
+    <div class="form-group">
+      <label for="codigoCliente">Código Cliente:</label>
+      <input id="codigoCliente" formControlName="codigoCliente" type="text" required>
     </div>
-  </div>
+
+    <div class="form-group">
+      <label for="codigoPropietario">Código Propietario:</label>
+      <input id="codigoPropietario" formControlName="codigoPropietario" type="text" required>
+    </div>
+
+    <button type="submit">Crear Chat</button>
+  </form>
+
+  <hr />
+
+  <h2>Enviar Mensaje</h2>
+  <form [formGroup]="enviarMensajeForm" (ngSubmit)="enviarMensaje()">
+    <div class="form-group">
+      <label for="codigoChat">Código Chat:</label>
+      <input id="codigoChat" formControlName="codigoChat" type="text" required>
+    </div>
+
+    <div class="form-group">
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" formControlName="mensaje" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="codigoRemitente">Código Remitente:</label>
+      <input id="codigoRemitente" formControlName="codigoRemitente" type="text" required>
+    </div>
+
+    <button type="submit">Enviar Mensaje</button>
+  </form>
+
+  <hr />
+
+  <h2>Mensajes del Chat</h2>
+  <ul>
+    <li *ngFor="let msg of mensajes">
+      <strong>{{ msg.codigoRemitente }}:</strong> {{ msg.mensaje }}
+    </li>
+  </ul>
+
+  <div *ngIf="mensaje" class="mensaje">{{ mensaje }}</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>

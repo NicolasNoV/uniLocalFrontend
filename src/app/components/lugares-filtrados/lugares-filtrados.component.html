@@ -1,0 +1,23 @@
+<div class="filter-container">
+  <h2>Filtrar Negocios por Estado</h2>
+  <label for="estadoSelect">Seleccione el estado:</label>
+  <select id="estadoSelect" (change)="filtrarPorEstado($event)">
+    <option *ngFor="let estado of estadosNegocio" [value]="estado">{{ estado }}</option>
+  </select>
+
+  <p>{{ mensaje }}</p>
+
+  <div *ngIf="negocios.length > 0" class="negocios-list">
+    <h3>Negocios Filtrados:</h3>
+    <ul>
+      <li *ngFor="let negocio of negocios">
+        <h4>{{ negocio.nombre }}</h4>
+        <p>{{ negocio.descripcion }}</p>
+        <p><strong>Cliente:</strong> {{ negocio.codigoCliente }}</p>
+        <p><strong>Tipo de Negocio:</strong> {{ negocio.tipoNegocio }}</p>
+        <p><strong>Teléfonos:</strong> {{ negocio.telefonos.join(', ') }}</p>
+        <p><strong>Ubicación:</strong> ({{ negocio.latitud }}, {{ negocio.longitud }})</p>
+      </li>
+    </ul>
+  </div>
+</div>

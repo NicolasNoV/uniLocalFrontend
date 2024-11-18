@@ -9,7 +9,7 @@ templateUrl: './app.component.html',
 styleUrl: './app.component.css'
 })
 export class AppComponent {
-title = 'Unilocal';
+title = 'RutiPrice';
 isLogged = false;
 email: string = "";
 constructor(private tokenService: TokenService) { }

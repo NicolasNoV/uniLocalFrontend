@@ -1,0 +1,85 @@
+<div class="editar-negocio-container">
+  <h2>Editar Negocio</h2>
+
+  <form [formGroup]="negocioForm" (ngSubmit)="guardarCambios()" class="formulario-negocio">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" formControlName="nombre" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" formControlName="descripcion"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="tipoNegocio">Tipo de Negocio:</label>
+      <input id="tipoNegocio" formControlName="tipoNegocio" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="longitud">Longitud:</label>
+      <input id="longitud" formControlName="longitud" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label for="latitud">Latitud:</label>
+      <input id="latitud" formControlName="latitud" type="number" />
+    </div>
+
+    <h3>Horarios:</h3>
+    <div formArrayName="horarios" class="horarios-container">
+      <div
+        *ngFor="let horario of horarios.controls; let i = index"
+        [formGroupName]="i"
+        class="horario-item"
+      >
+        <label for="dia">Día:</label>
+        <input id="dia" formControlName="dia" type="text" />
+
+        <label for="horaApertura">Hora Apertura:</label>
+        <input id="horaApertura" formControlName="horaApertura" type="time" />
+
+        <label for="horaCierre">Hora Cierre:</label>
+        <input id="horaCierre" formControlName="horaCierre" type="time" />
+
+        <button type="button" (click)="eliminarHorario(i)" class="btn-eliminar">
+          Eliminar
+        </button>
+      </div>
+      <button type="button" (click)="agregarHorario()" class="btn-agregar">
+        Agregar Horario
+      </button>
+    </div>
+
+    <h3>Imágenes:</h3>
+    <div formArrayName="imagenes" class="imagenes-container">
+      <div *ngFor="let imagen of imagenes.controls; let i = index" class="imagen-item">
+        <input formControlName="{{ i }}" type="text" placeholder="URL de la imagen" />
+        <button type="button" (click)="eliminarImagen(i)" class="btn-eliminar">
+          Eliminar
+        </button>
+      </div>
+      <button type="button" (click)="agregarImagen()" class="btn-agregar">
+        Agregar Imagen
+      </button>
+    </div>
+
+    <h3>Teléfonos:</h3>
+    <div formArrayName="telefonos" class="telefonos-container">
+      <div *ngFor="let telefono of telefonos.controls; let i = index" class="telefono-item">
+        <input formControlName="{{ i }}" type="text" placeholder="Número de teléfono" />
+        <button type="button" (click)="eliminarTelefono(i)" class="btn-eliminar">
+          Eliminar
+        </button>
+      </div>
+      <button type="button" (click)="agregarTelefono()" class="btn-agregar">
+        Agregar Teléfono
+      </button>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-guardar">Guardar Cambios</button>
+    </div>
+  </form>
+</div>

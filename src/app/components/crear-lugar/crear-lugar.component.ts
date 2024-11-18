@@ -1,91 +1,82 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { clienteService } from '../../servicios/cliente-service.service';
-import { Ubicacion } from '../../dto/ubicacion';
-import { TokenService } from '../../servicios/token.service';
-import { NegocioDTO } from '../../dto/negocio-dto';
-import { MapaService } from '../../servicios/mapa.service';
+import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { InicioClienteComponent } from '../inicio-cliente/inicio-cliente.component';
+import { CodigoService } from '../../servicios/codigo.service';
 
 @Component({
   selector: 'app-crear-lugar',
-  standalone: true,
-  imports: [],
   templateUrl: './crear-lugar.component.html',
-  styleUrl: './crear-lugar.component.css'
+  styleUrls: ['./crear-lugar.component.css'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, InicioClienteComponent]
 })
 export class CrearLugarComponent {
   lugarForm: FormGroup;
-  horarios: any[] = []; // Array para almacenar los horarios añadidos
-  imagen: File | null = null; // Variable para almacenar la imagen
+  mensaje: string = '';
 
   constructor(
-    private fb: FormBuilder, private clienteService: clienteService, private tokenService: TokenService, private mapaService: MapaService, public negocioDTO: NegocioDTO) {
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private codigoService: CodigoService
+  ) {
     this.lugarForm = this.fb.group({
+      longitud: 0,
+      latitud: 0,
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      telefono: ['', Validators.required],
-      horaInicio: ['', Validators.required],
-      horaFin: ['', Validators.required],
+      horarios: this.fb.array([this.crearHorarioForm()]),
+      imagenes: this.fb.array(['']),
+      codigoCliente: ['673a7b5f4072fe11ce63423a', Validators.required],
+      tipoNegocio: ['', Validators.required],
+      telefonos: this.fb.array(['', Validators.required])
+    });
+  }
+
+  get horarios(): FormArray {
+    return this.lugarForm.get('horarios') as FormArray;
+  }
+
+  get imagenes(): FormArray {
+    return this.lugarForm.get('imagenes') as FormArray;
+  }
+
+  get telefonos(): FormArray {
+    return this.lugarForm.get('telefonos') as FormArray;
+  }
+
+  crearHorarioForm(): FormGroup {
+    return this.fb.group({
       dia: ['', Validators.required],
-      tipoNegocio: ['', Validators.required]
+      horaApertura: ['', Validators.required],
+      horaCierre: ['', Validators.required]
     });
   }
 
-  ngOnInit(): void {
-    this.mapaService.crearMapa();
-    this.mapaService.agregarMarcador().subscribe((marcador) => {
-    this.negocioDTO.ubicacion.latitud = marcador.lat;
-    this.negocioDTO.ubicacion.longitud = marcador.lng;
-    });
-    }
-
-  anadirHorario(): void {
-    const horario = {
-      horaInicio: this.lugarForm.get('horaInicio')?.value,
-      horaFin: this.lugarForm.get('horaFin')?.value,
-      dia: this.lugarForm.get('dia')?.value
-    };
-    this.horarios.push(horario);
-    // Resetear los campos de horario
-    this.lugarForm.patchValue({
-      horaInicio: '',
-      horaFin: '',
-      dia: ''
-    });
+  agregarHorario(): void {
+    this.horarios.push(this.crearHorarioForm());
   }
 
-  onFileChange(event: any): void {
-    if (event.target.files && event.target.files.length) {
-      this.imagen = event.target.files[0];
-    }
+  agregarImagen(): void {
+    this.imagenes.push(this.fb.control(''));
   }
 
-  onSubmit(): void {
+  agregarTelefono(): void {
+    this.telefonos.push(this.fb.control('', Validators.required));
+  }
+
+  crearNegocio(): void {
     if (this.lugarForm.valid) {
-      const negocioDTO1 = new NegocioDTO;
-      const negocioDTO = {
-        ubicacion: new Ubicacion(),
-        nombre: this.lugarForm.get('nombre')?.value,
-        descripcion: this.lugarForm.get('descripcion')?.value,
-        telefono: this.lugarForm.get('telefono')?.value,
-        horarios: this.horarios,
-        tipoNegocio: this.lugarForm.get('tipoNegocio')?.value,
-        imagen: this.imagen,
-        codigoCliente: this.tokenService.getCodigo()
-      };
-
-      this.clienteService.crearNegocio(negocioDTO1).subscribe({
-        next: (data) => {
-          console.log('Lugar creado con éxito:', data);
+      this.http.post('http://localhost:9090/api/clientes/crear-negocio', this.lugarForm.value).subscribe({
+        next: (response: any) => {
+          this.mensaje = response.respuesta || 'Negocio creado correctamente';
         },
         error: (error) => {
-          console.error('Error al crear el lugar:', error);
+          console.error('Error al crear el negocio:', error);
+          this.mensaje = 'Error al crear el negocio';
         }
       });
     }
   }
-
-
-
-
 }

@@ -1,50 +1,24 @@
-<div class="container">
-  <div class="card mt-4">
-    <img src="ruta/a/tu/imagen.jpg" class="card-img-top" alt="Imagen de Pioneiro Restaurante">
-    <div class="card-body">
-      <h5 class="card-title text-center">CREAR OFERTA</h5>
-      <h6 class="card-subtitle mb-2 text-muted text-center">OFERTA DE PIONEIRO RESTAURANTE</h6>
-      <form formGroup="ofertaForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="offerDetails" class="form-label">Detalles de la oferta</label>
-          <input type="text" class="form-control" id="offerDetails" formControlName="descripcion" placeholder="Ingrese detalles">
-        </div>
-        <div class="mb-3">
-          <div class="d-flex justify-content-between align-items-end">
-            <div class="me-2">
-              <label for="startDate" class="form-label">Fecha inicio</label>
-              <input type="date" class="form-control" id="startDate" formControlName="inicioOferta">
-            </div>
-            <div class="ms-2">
-              <label for="startTime" class="form-label">Hora inicio</label>
-              <input type="time" class="form-control" id="startTime" formControlName="inicioHora">
-            </div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <div class="d-flex justify-content-between align-items-end">
-            <div class="me-2">
-              <label for="endDate" class="form-label">Fecha fin</label>
-              <input type="date" class="form-control" id="endDate" formControlName="finOferta">
-            </div>
-            <div class="ms-2">
-              <label for="endTime" class="form-label">Hora fin</label>
-              <input type="time" class="form-control" id="endTime" formControlName="finHora">
-            </div>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="negocios" class="form-label">Negocio</label>
-          <select id="negocios" class="form-select" formControlName="codigoNegocio">
-            <option value="" disabled>Seleccione un negocio</option>
-            <option ngFor="let negocio of negocios" [value]="negocio.codigoCliente">{{ negocio.nombre }}</option>
-          </select>
-        </div>
-        <div class="d-grid">
-          <button type="submit" class="btn btn-primary">CREAR OFERTA</button>
-        </div>
-      </form>
-    </div>
-  </div>
+<app-inicio-cliente></app-inicio-cliente>
+
+<div class="oferta-container">
+  <h2>Crear Nueva Oferta</h2>
+  <form [formGroup]="ofertaForm">
+    <label for="descuento">Descuento (%):</label>
+    <input type="number" formControlName="descuento" id="descuento" required />
+
+    <label for="codigoNegocio">Código del Negocio:</label>
+    <input formControlName="codigoNegocio" id="codigoNegocio" required />
+
+    <label for="descripcion">Descripción:</label>
+    <textarea formControlName="descripcion" id="descripcion" required></textarea>
+
+    <label for="inicioOferta">Inicio de la Oferta:</label>
+    <input type="datetime-local" formControlName="inicioOferta" id="inicioOferta" required />
+
+    <label for="finOferta">Fin de la Oferta:</label>
+    <input type="datetime-local" formControlName="finOferta" id="finOferta" required />
+
+    <button type="button" (click)="crearOferta()">Crear Oferta</button>
+  </form>
+  <p>{{ mensaje }}</p>
 </div>
-   

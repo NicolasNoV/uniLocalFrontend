@@ -1,61 +1,49 @@
-<div class="container">
-  <div class="card mt-4">
-    <div class="card-body">
-      <h5 class="card-title">Crear Lugar</h5>
-      <form formGroup="lugarForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="placeName" class="form-label">Nombre del lugar</label>
-          <input type="text" class="form-control" id="placeName" formControlName="nombre" placeholder="Nombre del lugar">
-        </div>
-        <div class="mb-3">
-          <label for="placeDescription" class="form-label">Descripción</label>
-          <textarea class="form-control" id="placeDescription" formControlName="descripcion" rows="3" placeholder="Ingresa la descripción"></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="placePhone" class="form-label">Teléfono</label>
-          <input type="tel" class="form-control" id="placePhone" formControlName="telefono" placeholder="Número de teléfono">
-        </div>
-        <div class="mb-3">
-          <label for="placeLocation" class="form-label">Ubicación</label>
-          <div id="placeLocation" class="bg-dark" style="height: 200px;">
-            <!-- Map would be embedded here -->
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Horario</label>
-          <div class="d-flex">
-            <div class="me-3">
-              <label for="startTime" class="form-label">Inicio</label>
-              <input type="time" class="form-control" id="startTime" formControlName="horaInicio">
-            </div>
-            <div class="me-3">
-              <label for="endTime" class="form-label">Fin</label>
-              <input type="time" class="form-control" id="endTime" formControlName="horaFin">
-            </div>
-            <div>
-              <label for="day" class="form-label">Día</label>
-              <input type="date" class="form-control" id="day" formControlName="dia">
-            </div>
-          </div>
-        </div>
-        <button type="button" class="btn btn-primary mt-3" (click)="anadirHorario()">Añadir Horario</button>
-        <div class="mb-3 mt-3">
-          <label for="placeType" class="form-label">Tipo Negocio</label>
-          <input type="text" class="form-control" id="placeType" formControlName="tipoNegocio" placeholder="Tipo de negocio">
-        </div>
-        <div class="mb-3">
-          <label for="placeImage" class="form-label">Imagen</label>
-          <div class="d-flex">
-            <div class="me-3">
-              <img src="https://via.placeholder.com/100" alt="Imagen" class="img-thumbnail">
-            </div>
-            <div>
-              <input type="file" class="form-control-file" id="placeImage" (change)="onFileChange($event)">
-            </div>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
-      </form>
+<app-inicio-cliente></app-inicio-cliente>
+
+<div class="crear-lugar-container">
+  <h2>Crear Nuevo Negocio</h2>
+  <form [formGroup]="lugarForm">
+    <label for="nombre">Nombre:</label>
+    <input formControlName="nombre" id="nombre" required />
+
+    <label for="descripcion">Descripción:</label>
+    <textarea formControlName="descripcion" id="descripcion" required></textarea>
+
+    <div formArrayName="horarios">
+      <h3>Horarios:</h3>
+      <div *ngFor="let horario of horarios.controls; let i = index" [formGroupName]="i">
+        <label for="dia">Día:</label>
+        <input formControlName="dia" placeholder="Día" required />
+        
+        <label for="horaApertura">Hora Apertura:</label>
+        <input type="time" formControlName="horaApertura" required />
+
+        <label for="horaCierre">Hora Cierre:</label>
+        <input type="time" formControlName="horaCierre" required />
+      </div>
+      <button type="button" (click)="agregarHorario()">Agregar Horario</button>
     </div>
-  </div>
+
+    <div formArrayName="imagenes">
+      <h3>Imágenes:</h3>
+      <div *ngFor="let imagen of imagenes.controls; let i = index">
+        <input formControlName="{{i}}" placeholder="URL de la imagen" required />
+      </div>
+      <button type="button" (click)="agregarImagen()">Agregar Imagen</button>
+    </div>
+
+    <label for="tipoNegocio">Tipo de Negocio:</label>
+    <input formControlName="tipoNegocio" id="tipoNegocio" required />
+
+    <div formArrayName="telefonos">
+      <h3>Teléfonos:</h3>
+      <div *ngFor="let telefono of telefonos.controls; let i = index">
+        <input formControlName="{{i}}" placeholder="Número de teléfono" required />
+      </div>
+      <button type="button" (click)="agregarTelefono()">Agregar Teléfono</button>
+    </div>
+
+    <button type="button" (click)="crearNegocio()">Crear Negocio</button>
+  </form>
+  <p>{{ mensaje }}</p>
 </div>

@@ -1,63 +1,44 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { RouterModule } from '@angular/router';
-import { TokenService } from '../../servicios/token.service';
-import { ModeradorServiceService } from '../../servicios/moderador-service.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CrearOfertaDTO } from '../../dto/crear-oferta-dto';
-import { clienteService } from '../../servicios/cliente-service.service';
-import { NegocioDTO } from '../../dto/negocio-dto';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { InicioClienteComponent } from '../inicio-cliente/inicio-cliente.component';
 
 @Component({
   selector: 'app-crear-oferta',
-  standalone: true,
-  imports: [],
   templateUrl: './crear-oferta.component.html',
-  styleUrl: './crear-oferta.component.css'
+  styleUrls: ['./crear-oferta.component.css'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, InicioClienteComponent]
 })
 export class CrearOfertaComponent {
   ofertaForm: FormGroup;
-  ofertaDTO: CrearOfertaDTO = new CrearOfertaDTO();
+  mensaje: string = '';
 
-  constructor(private tokenService: TokenService, private moderadorService: ModeradorServiceService, private clienteService: clienteService, private fb: FormBuilder, public negocio: NegocioDTO) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient
+  ) {
     this.ofertaForm = this.fb.group({
+      descuento: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+      codigoNegocio: ['', Validators.required],
       descripcion: ['', Validators.required],
       inicioOferta: ['', Validators.required],
-      inicioHora: ['', Validators.required],
-      finOferta: ['', Validators.required],
-      finHora: ['', Validators.required],
-      codigoNegocio: ['', Validators.required]
+      finOferta: ['', Validators.required]
     });
-   }
+  }
 
-  onSubmit(): void {
+  crearOferta(): void {
     if (this.ofertaForm.valid) {
-      const formValues = this.ofertaForm.value;
-
-      // Crear una fecha de inicio y fin combinando la fecha y la hora
-      const inicioOferta = new Date(`${formValues.inicioOferta}T${formValues.inicioHora}:00`);
-      const finOferta = new Date(`${formValues.finOferta}T${formValues.finHora}:00`);
-
-      this.ofertaDTO = {
-        descripcion: formValues.descripcion,
-        inicioOferta: inicioOferta,
-        finOferta: finOferta,
-        codigoNegocio: formValues.codigoNegocio,
-        descuento: 0 // Ajusta el valor según corresponda
-      };
-
-      this.clienteService.crearOfertas(this.ofertaDTO).subscribe({
-        next: (data) => {
-          console.log('Oferta creada con éxito:', data);
+      this.http.post('http://localhost:9090/api/clientes/crear-ofertas', this.ofertaForm.value).subscribe({
+        next: (response: any) => {
+          this.mensaje = response.respuesta || 'Oferta creada correctamente';
         },
         error: (error) => {
           console.error('Error al crear la oferta:', error);
+          this.mensaje = 'Error al crear la oferta';
         }
       });
     }
   }
-
-
-
-
 }

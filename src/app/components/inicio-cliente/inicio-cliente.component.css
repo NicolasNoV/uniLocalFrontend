@@ -1,38 +1,53 @@
-.container {
-    max-width: 900px;
-  }
-  
-  .rounded-circle {
-    margin-bottom: 1rem;
-  }
-  
-  h2 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-  }
-  
-  .text-center p {
-    margin: 0;
-    font-size: 1rem;
-  }
-  
-  .fa-2x {
-    margin-bottom: 0.5rem;
-    color: #007bff;
-  }
-  
-  .text-primary {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-  }
-  
-  .card img {
-    height: 150px;
-    object-fit: cover;
-  }
-  
-  .card-title {
-    font-size: 1rem;
-    color: #333;
-  }  
+/* Estilos para el fondo azul */
+.menu-superior {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  gap: 15px; /* Espacio entre los botones */
+  background-color: blue; /* Color de fondo */
+  padding: 15px; /* Espaciado interno */
+  border-radius: 10px; /* Bordes redondeados */
+  position: relative;
+  overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+}
+
+/* Estilo de los botones */
+.menu-superior button {
+  background-color: white;
+  color: blue;
+  border: 2px solid white;
+  border-radius: 50px; /* Redondeo total para forma ovalada */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  width: 150px; /* Ancho fijo */
+  height: 50px; /* Altura fija */
+  text-align: center; /* Centrar el texto */
+  line-height: 1.2; /* Ajusta la altura de línea para mantener el texto centrado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo al pasar el mouse */
+.menu-superior button:hover {
+  background-color: lightblue;
+  color: white;
+}
+
+/* Estilo para el botón activo */
+.menu-superior button.activo {
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  border: 2px solid blue; /* Bordes resaltados */
+}
+
+/* Ajuste de contenedor para evitar desbordes */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+

@@ -1,0 +1,23 @@
+<div class="buscar-container">
+    <input
+      type="text"
+      placeholder="Buscar..."
+      [(ngModel)]="busqueda"
+      class="barra-busqueda"
+    />
+  
+    <select [(ngModel)]="tipoNegocio" class="tipo-negocio">
+      <option value="PANADERIA">Panaderia</option>
+      <option value="CAFETERIA">Cafeteria</option>
+      <option value="BAR">Bar</option>
+      <option value="RESTAURANTE">Restaurante</option>
+      <option value="DISCOTECA">Discoteca</option>
+      <option value="SUPERMERCADO">Supermercado</option>
+      <option value="TIENDA">Tienda</option>
+    </select>
+  
+    <button (click)="realizarBusqueda()" class="boton-lupa">
+      🔍
+    </button>
+  </div>
+  

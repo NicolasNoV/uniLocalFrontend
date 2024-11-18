@@ -1,21 +1,51 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { BuscarComponent } from "../buscar/buscar.component";
 
 @Component({
-  selector: 'app-usuario',
-  standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  selector: 'app-inicio-cliente',
   templateUrl: './inicio-cliente.component.html',
-  styleUrls: ['./inicio-cliente.component.css']
+  standalone: true,
+  styleUrls: ['./inicio-cliente.component.css'],
+  imports: [BuscarComponent]
 })
 export class InicioClienteComponent {
-  recomendaciones = [
-    { nombre: 'La Cabrera', imagen: 'assets/lacabrera.jpg' },
-    { nombre: 'Pioneiro Restaurante', imagen: 'assets/pioneiro.jpg' },
-    { nombre: 'El Taller', imagen: 'assets/eltaller.jpg' },
-    { nombre: 'Canelas', imagen: 'assets/canelas.jpg' },
-    { nombre: 'Lugares Favoritos', imagen: 'assets/lugaresfavoritos.jpg' },
-    { nombre: 'Superama', imagen: 'assets/superama.jpg' }
-  ];
+  seccionActiva: string = 'Inicio'; // Inicializa con la sección por defecto
+
+  constructor(private router: Router) {}
+
+  irAInicio(): void {
+    this.seccionActiva = 'Inicio';
+    this.router.navigate(['/home']);
+  }
+
+  irACrearLugar(): void {
+    this.seccionActiva = 'Crear Lugar';
+    this.router.navigate(['/crear-lugar']);
+  }
+
+  irACrearOferta(): void {
+    this.seccionActiva = 'Crear Oferta';
+    this.router.navigate(['/crear-oferta']);
+  }
+
+  irAFavoritos(): void {
+    this.seccionActiva = 'Favoritos';
+    this.router.navigate(['/favorito']);
+  }
+
+  irAMisLugares(): void {
+    this.seccionActiva = 'Mis Lugares';
+    this.router.navigate(['/mis-lugares']);
+  }
+
+  irAPerfil(): void {
+    this.seccionActiva = 'Perfil';
+    this.router.navigate(['/perfil']);
+  }
+
+  irAChat(): void {
+    this.seccionActiva = 'Chat';
+    this.router.navigate(['/chat']);
+  }
 }

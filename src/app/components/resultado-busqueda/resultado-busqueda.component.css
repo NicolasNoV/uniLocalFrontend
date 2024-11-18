@@ -1,0 +1,48 @@
+.buscar-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .barra-busqueda {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex-grow: 1;
+  }
+  
+  .tipo-negocio {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .boton-lupa {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .boton-lupa:hover {
+    background-color: #0056b3;
+  }
+  
+  .resultados-container {
+    padding: 20px;
+  }
+  
+  .resultados-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .resultados-container li {
+    background: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  

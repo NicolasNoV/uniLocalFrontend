@@ -1,24 +1,55 @@
-.container {
-    max-width: 800px;
-    margin: auto;
-  }
-  
-  h2 {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  img.rounded-circle {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  .btn {
-    font-weight: bold;
-  }
-  
+.perfil-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+.success {
+  color: green;
+  font-size: 0.9em;
+}
+
+.btn-eliminar {
+  background-color: #f44336; /* Rojo para indicar eliminación */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background-color: #d32f2f;
+}

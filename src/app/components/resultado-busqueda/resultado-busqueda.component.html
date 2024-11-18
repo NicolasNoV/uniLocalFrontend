@@ -1,0 +1,5 @@
+<app-inicio-cliente></app-inicio-cliente>
+
+<div *ngFor="let resultado of resultados | keyvalue">
+  <p>{{ resultado.key }}: {{ resultado.value }}</p>
+</div>
